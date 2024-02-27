@@ -1,0 +1,73 @@
+﻿@using X.PagedList.Mvc.Core;
+@using X.PagedList;
+@model IEnumerable<QLNV.Models.NhanvienViewModel>
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>Danh sách nhân viên</h1>
+
+<h6>
+    Import nhân viên
+</h6>
+<form method="post" enctype="multipart/form-data" action="/Nhanvien/Upload">
+    <div class="form-group">
+        <label for="file">Choose file:</label>
+        <input type="file" class="form-control-file" id="file" name="file">
+    </div>
+    <button type="submit" class="btn btn-primary">Upload</button>
+</form>
+@*<p>
+    <a asp-action="Create">Create New</a>
+</p>*@
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.MANV)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.TENNV)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.NGAYSINH)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Age)
+            </th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.MANV)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.TENNV)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.NGAYSINH)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Age)
+            </td>
+        </tr>
+}
+    </tbody>
+</table>
+<div>
+    @Html.PagedListPager((IPagedList) Model, page => Url.Action("Index", new {page = page}),
+    new X.PagedList.Web.Common.PagedListRenderOptions {
+    LiElementClasses = new string[] {"page-item"},
+    PageClasses = new string[] { "page-link" }
+    })
+</div>
+@if (!string.IsNullOrEmpty(ViewBag.Message))
+{
+    <script>
+        alert('@ViewBag.Message');
+    </script>
+}
+
+
