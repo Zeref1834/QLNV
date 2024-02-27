@@ -41,7 +41,7 @@ namespace QLNV.Controllers
         }
 
         [HttpPost]
-        public async Task<IActionResult> UploadAsync()
+        public async Task<IActionResult> ImportDataAsync()
         {
             //Kiểm tra có file hay không
             if (Request.Form.Files.Count == 0)
