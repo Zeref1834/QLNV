@@ -49,7 +49,7 @@ namespace QLNV.Controllers
                 return BadRequest("Không có file được chọn!");
             }
 
-            //Kiểm tra 
+            //Kiểm tra có phải là file excel hay không
             string extension = Path.GetExtension(Request.Form.Files[0].FileName).ToLower();
             if (extension != ".xlsx" && extension != ".xls" && extension != ".xlsm" && extension != ".xlsb")
             {
